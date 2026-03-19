@@ -269,6 +269,99 @@
 
     sections.forEach((section) => sectionObserver.observe(section));
 
+    // --- Hero Showcase Slideshow ---
+    const showcase = document.getElementById('hero-showcase');
+
+    if (showcase) {
+        const showcaseSlides = [
+            {
+                type: 'city',
+                image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop&q=80',
+                name: 'San Francisco',
+                subtitle: 'Where I build products'
+            },
+            {
+                type: 'quote',
+                text: '\u201CSome people want it to happen, some wish it would happen, others <strong>make it happen.</strong>\u201D',
+                author: 'Michael Jordan',
+                avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Michael_Jordan_in_2014.jpg/220px-Michael_Jordan_in_2014.jpg'
+            },
+            {
+                type: 'city',
+                image: 'https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=800&h=600&fit=crop&q=80',
+                name: 'Mumbai',
+                subtitle: 'Where it all began'
+            },
+            {
+                type: 'quote',
+                text: '\u201CYour time is limited, don\u2019t waste it living <strong>someone else\u2019s life.</strong>\u201D',
+                author: 'Steve Jobs',
+                avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/220px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg'
+            },
+            {
+                type: 'city',
+                image: 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=800&h=600&fit=crop&q=80',
+                name: 'San Francisco',
+                subtitle: 'City by the Bay'
+            },
+            {
+                type: 'quote',
+                text: '\u201CI don\u2019t believe in taking right decisions. I take decisions and then <strong>make them right.</strong>\u201D',
+                author: 'Ratan Tata',
+                avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Ratan_Tata_photo.jpg/220px-Ratan_Tata_photo.jpg'
+            },
+            {
+                type: 'city',
+                image: 'https://images.unsplash.com/photo-1567157577867-05ccb1388e66?w=800&h=600&fit=crop&q=80',
+                name: 'Mumbai',
+                subtitle: 'The city of dreams'
+            },
+            {
+                type: 'quote',
+                text: '\u201CDream is not that which you see while sleeping. It is something that <strong>does not let you sleep.</strong>\u201D',
+                author: 'APJ Abdul Kalam',
+                avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/A._P._J._Abdul_Kalam.jpg/220px-A._P._J._Abdul_Kalam.jpg'
+            }
+        ];
+
+        // Build slide elements
+        showcaseSlides.forEach((slide, i) => {
+            const el = document.createElement('div');
+            el.className = 'showcase-slide ' + (slide.type === 'city' ? 'showcase-city' : 'showcase-quote');
+            if (i === 0) el.classList.add('active');
+
+            if (slide.type === 'city') {
+                el.innerHTML =
+                    '<img class="showcase-city-img" src="' + slide.image + '" alt="' + slide.name + '" loading="eager">' +
+                    '<div class="showcase-city-overlay">' +
+                    '  <span class="showcase-city-name">' + slide.name + '</span>' +
+                    '  <span class="showcase-city-sub">' + slide.subtitle + '</span>' +
+                    '</div>';
+            } else {
+                el.innerHTML =
+                    '<p class="showcase-quote-text">' + slide.text + '</p>' +
+                    '<div class="showcase-author">' +
+                    '  <div class="showcase-author-avatar">' +
+                    '    <img src="' + slide.avatar + '" alt="' + slide.author + '">' +
+                    '  </div>' +
+                    '  <span class="showcase-author-name">' + slide.author + '</span>' +
+                    '</div>';
+            }
+
+            showcase.appendChild(el);
+        });
+
+        // Cycle slides
+        let currentSlide = 0;
+        const allSlides = showcase.querySelectorAll('.showcase-slide');
+
+        setInterval(() => {
+            allSlides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % allSlides.length;
+            allSlides[currentSlide].classList.add('active');
+        }, 5000);
+    }
+
     // --- Hero entrance on load ---
     window.addEventListener('load', () => {
         document.querySelectorAll('.hero .reveal-up').forEach((el) => {
