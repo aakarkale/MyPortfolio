@@ -65,6 +65,36 @@
         });
     }
 
+    // --- Theme Toggle ---
+    const themeToggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+
+    // Load saved preference or respect system preference
+    function getPreferredTheme() {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved;
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+
+    function setTheme(theme) {
+        if (theme === 'light') {
+            root.setAttribute('data-theme', 'light');
+        } else {
+            root.removeAttribute('data-theme');
+        }
+        localStorage.setItem('theme', theme);
+    }
+
+    // Apply on load
+    setTheme(getPreferredTheme());
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+    }
+
     // --- Navigation Scroll Effect ---
     const nav = document.getElementById('nav');
     let lastScroll = 0;
