@@ -432,28 +432,30 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-content {
-    max-width: 620px;
+    max-width: 560px;
     position: relative;
     z-index: 2;
-    flex-shrink: 0;
+    flex-shrink: 1;
+    min-width: 380px;
 }
 
 /* --- Hero Showcase (Right Side) --- */
 .hero-showcase {
     position: relative;
-    width: 520px;
-    height: 620px;
+    width: 700px;
+    height: 85vh;
+    max-height: 850px;
     flex-shrink: 0;
     z-index: 2;
-    margin-right: 1rem;
+    margin-right: 0;
 }
 
 .hero-showcase::before,
 .hero-showcase::after {
     content: '';
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-color: var(--accent);
     border-style: solid;
     opacity: 0.3;
@@ -462,14 +464,14 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-showcase::before {
-    top: -10px;
-    left: -10px;
+    top: -12px;
+    left: -12px;
     border-width: 1px 0 0 1px;
 }
 
 .hero-showcase::after {
-    bottom: -10px;
-    right: -10px;
+    bottom: -12px;
+    right: -12px;
     border-width: 0 1px 1px 0;
 }
 
@@ -525,13 +527,13 @@ img { max-width: 100%; display: block; }
 
 .showcase-city-name {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 2.4rem;
     color: #f0ece6;
     font-weight: 400;
 }
 
 .showcase-city-sub {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: rgba(240, 236, 230, 0.6);
@@ -539,7 +541,7 @@ img { max-width: 100%; display: block; }
 
 /* Quote slides */
 .showcase-quote {
-    padding: 3.5rem;
+    padding: 4.5rem;
     text-align: center;
     border: 1px solid var(--border);
     background: var(--bg-card);
@@ -547,11 +549,11 @@ img { max-width: 100%; display: block; }
 
 .showcase-quote-text {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 2rem;
     font-weight: 400;
     line-height: 1.55;
     color: var(--text-primary);
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
     font-style: italic;
 }
 
@@ -569,8 +571,8 @@ img { max-width: 100%; display: block; }
 }
 
 .showcase-author-avatar {
-    width: 56px;
-    height: 56px;
+    width: 68px;
+    height: 68px;
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid var(--accent);
@@ -585,28 +587,40 @@ img { max-width: 100%; display: block; }
 
 .showcase-author-name {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-secondary);
     letter-spacing: 0.05em;
 }
 
+@media (max-width: 1400px) {
+    .hero-showcase {
+        width: 580px;
+        height: 75vh;
+        max-height: 720px;
+    }
+    .showcase-quote { padding: 3.5rem; }
+    .showcase-quote-text { font-size: 1.75rem; }
+}
+
 @media (max-width: 1200px) {
     .hero-showcase {
-        width: 440px;
-        height: 540px;
-        margin-right: 0;
+        width: 480px;
+        height: 65vh;
+        max-height: 620px;
     }
     .showcase-quote { padding: 2.5rem; }
-    .showcase-quote-text { font-size: 1.4rem; }
+    .showcase-quote-text { font-size: 1.5rem; }
 }
 
 @media (max-width: 1100px) {
     .hero-showcase {
-        width: 380px;
-        height: 480px;
+        width: 400px;
+        height: 55vh;
+        max-height: 520px;
     }
-    .showcase-quote-text { font-size: 1.25rem; }
+    .showcase-quote-text { font-size: 1.3rem; }
+    .showcase-quote { padding: 2rem; }
 }
 
 @media (max-width: 968px) {
@@ -615,6 +629,7 @@ img { max-width: 100%; display: block; }
     }
     .hero-content {
         max-width: 900px;
+        min-width: unset;
     }
 }
 
